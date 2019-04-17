@@ -1,0 +1,24 @@
+{
+  "npmScope": "bigcorp",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": "*",
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "host-app": {
+      "tags": []
+    },
+    "host-app-e2e": {
+      "tags": []
+    },
+    "host": {
+      "tags": []
+    },
+    "mat": {
+      "tags": []
+    }
+  }
+}

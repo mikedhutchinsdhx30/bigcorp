@@ -1,0 +1,24 @@
+<h1>
+  Host
+</h1>
+<code>{{model?.startDate}} - {{model?.endDate}}</code>
+
+<form #form="ngForm">
+  <bigcorp-date-range-picker
+    [(ngModel)]="model"
+    required
+    name="model" #booger="ngModel"
+    ></bigcorp-date-range-picker>
+    <div *ngIf="!booger.valid && booger.touched && booger.errors">
+      This is invalid... {{booger.errors | json}}
+    </div>
+</form>
+
+<hr>
+<form [formGroup]="myForm">
+  <bigcorp-date-range-picker
+    [formControlName]="'otherModel'"></bigcorp-date-range-picker>
+    <div *ngIf="!myForm.controls.otherModel.valid && myForm.controls.otherModel.touched">
+        This is invalid... {{myForm.controls.otherModel.errors | json}}
+      </div>
+  </form>

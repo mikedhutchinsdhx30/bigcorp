@@ -1,0 +1,209 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "",
+  "projects": {
+    "host-app": {
+      "root": "apps/host-app/",
+      "sourceRoot": "apps/host-app/src",
+      "projectType": "application",
+      "prefix": "bigcorp",
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "style": "less"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/host-app",
+            "index": "apps/host-app/src/index.html",
+            "main": "apps/host-app/src/main.ts",
+            "polyfills": "apps/host-app/src/polyfills.ts",
+            "tsConfig": "apps/host-app/tsconfig.app.json",
+            "assets": [
+              "apps/host-app/src/favicon.ico",
+              "apps/host-app/src/assets"
+            ],
+            "styles": ["apps/host-app/src/styles.less"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/host-app/src/environments/environment.ts",
+                  "with": "apps/host-app/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "host-app:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "host-app:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "host-app:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "apps/host-app/src/test.ts",
+            "polyfills": "apps/host-app/src/polyfills.ts",
+            "tsConfig": "apps/host-app/tsconfig.spec.json",
+            "karmaConfig": "apps/host-app/karma.conf.js",
+            "styles": ["apps/host-app/src/styles.less"],
+            "scripts": [],
+            "assets": [
+              "apps/host-app/src/favicon.ico",
+              "apps/host-app/src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/host-app/tsconfig.app.json",
+              "apps/host-app/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
+    },
+    "host-app-e2e": {
+      "root": "apps/host-app-e2e",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "apps/host-app-e2e/protractor.conf.js",
+            "devServerTarget": "host-app:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "host-app:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/host-app-e2e/tsconfig.e2e.json",
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
+    },
+    "host": {
+      "root": "libs/host",
+      "sourceRoot": "libs/host/src",
+      "projectType": "library",
+      "prefix": "bigcorp",
+      "architect": {
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/host/src/test.ts",
+            "tsConfig": "libs/host/tsconfig.spec.json",
+            "karmaConfig": "libs/host/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/host/tsconfig.lib.json",
+              "libs/host/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "styleext": "less"
+        }
+      }
+    },
+    "mat": {
+      "root": "libs/mat",
+      "sourceRoot": "libs/mat/src",
+      "projectType": "library",
+      "prefix": "bigcorp",
+      "architect": {
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/mat/src/test.ts",
+            "tsConfig": "libs/mat/tsconfig.spec.json",
+            "karmaConfig": "libs/mat/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/mat/tsconfig.lib.json",
+              "libs/mat/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "styleext": "less"
+        }
+      }
+    }
+  },
+  "cli": {
+    "warnings": {
+      "typescriptMismatch": false,
+      "versionMismatch": false
+    },
+    "defaultCollection": "@nrwl/schematics",
+    "packageManager": "npm"
+  },
+  "schematics": {
+    "@nrwl/schematics:application": {
+      "style": "less"
+    },
+    "@nrwl/schematics:library": {
+      "style": "less"
+    }
+  },
+  "defaultProject": "host-app"
+}

@@ -1,0 +1,21 @@
+<div (focus)="onTouched({})">
+
+    <mat-form-field>
+        <input matInput [matDatepicker]="startDatePicker" placeholder="start date" [(ngModel)] ="range.startDate" #startDate
+          (ngModelChange)="range.startDate = $event" *ngIf="range" (dateChange)="update()">
+        <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #startDatePicker></mat-datepicker>
+      </mat-form-field>
+</div>
+
+<div (focus)="onTouched({})">
+    <mat-form-field>
+        <input matInput [matDatepicker]="endDatePicker" placeholder="end date" [(ngModel)]="range.endDate" #endDate
+
+        (ngModelChange)="range.endDate = $event"
+        *ngIf="range" (dateChange)="update()">
+        <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #endDatePicker></mat-datepicker>
+      </mat-form-field>
+  </div>
+
